@@ -1,8 +1,1 @@
-Added colorama and implemented it.
-Added banner.
-Updated help text to reference .exe and not py script.
-Enhanced help text.
-Changed --search_dir to --target_dir
-Changed arg from --full_paths to --full-paths
-Added -fp shorthand for --full-paths arg
-Changed target_dir arg so you don't need to pass in --target_dir
+black reformat

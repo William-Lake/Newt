@@ -5,7 +5,7 @@ import colorama
 from colorama import Fore, Back, Style
 
 
-def print_file(do_print_full_path,file):
+def print_file(do_print_full_path, file):
 
     if do_print_full_path:
 
@@ -13,9 +13,10 @@ def print_file(do_print_full_path,file):
 
     else:
 
-        print(file.__str__())  
+        print(file.__str__())
 
-def yield_files_with_extension(target_dir,target_ext):
+
+def yield_files_with_extension(target_dir, target_ext):
 
     for file in target_dir.glob(f"**/*{target_ext}"):
 
@@ -23,27 +24,31 @@ def yield_files_with_extension(target_dir,target_ext):
 
             yield file
 
+
 def collect_target_ext(args):
 
     target_ext = args.target_ext
 
-    if not target_ext.startswith('.'):
-        
-        target_ext = '.' + target_ext
+    if not target_ext.startswith("."):
+
+        target_ext = "." + target_ext
 
     return target_ext
+
 
 def main(args):
 
     target_ext = collect_target_ext(args)
 
-    for file in yield_files_with_extension(args.target_dir,target_ext):
+    for file in yield_files_with_extension(args.target_dir, target_ext):
 
-        print_file(args.full_paths,file)
+        print_file(args.full_paths, file)
+
 
 def print_banner():
 
-    print(fr'''{Fore.GREEN}
+    print(
+        fr"""{Fore.GREEN}
 
  __   __     ______     __     __     ______  
 /\ "-.\ \   /\  ___\   /\ \  _ \ \   /\__  _\ 
@@ -52,7 +57,9 @@ def print_banner():
   \/_/ \/_/   \/_____/   \/_/   \/_/     \/_/ 
                                               
 
-{Fore.RESET}{Fore.YELLOW}fiNd filEs With exTension{Fore.RESET}''')
+{Fore.RESET}{Fore.YELLOW}fiNd filEs With exTension{Fore.RESET}"""
+    )
+
 
 def gather_args():
 
@@ -60,7 +67,7 @@ def gather_args():
         formatter_class=RawTextHelpFormatter,
         description="Recursively lists files with a given extension in a target directory.",
         prog="NEWT.exe",
-        epilog=f'''==========================
+        epilog=f"""==========================
 
 {Fore.YELLOW}Usage Examples{Fore.RESET}
 
@@ -75,7 +82,7 @@ Searching for .jpg files in a different directory.
 Searching for .mp3 files in this directory, printing the results as full paths.
 
     {Fore.GREEN + Style.BRIGHT}NEWT.exe .mp3 --full-paths{Style.RESET_ALL}
-{Fore.RESET}'''
+{Fore.RESET}""",
     )
 
     arg_parser.add_argument(
@@ -92,12 +99,13 @@ Searching for .mp3 files in this directory, printing the results as full paths.
 
     arg_parser.add_argument(
         "--full-paths",
-        '-fp',
+        "-fp",
         action="store_true",
         help="If provided, the full paths will be printed. Otherwise, relative paths are printed.",
     )
 
     return arg_parser.parse_args()
+
 
 if __name__ == "__main__":
 
