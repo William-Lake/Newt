@@ -22,7 +22,7 @@ jobs:
           python -m pip install pyinstaller
           python -m pip install -r requirements.txt
       - name: Build EXE
-        run: pyinstaller --onefile find_files_with_extension.py
+        run: pyinstaller --onefile --icon=Newt.ico find_files_with_extension.py
       - name: Move Executable
         run: move dist/find_files_with_extension.exe NEWT.exe
       - name: Create Release
